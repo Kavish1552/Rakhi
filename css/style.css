@@ -279,9 +279,9 @@ img { max-width: 100%; display: block; }
 }
 .lantern-glow {
   position: absolute;
-  left: 44%;
-  top: 31%;
-  width: 15%;
+  left: 44.3%;
+  top: 36.7%;
+  width: 13%;
   aspect-ratio: 1;
   transform: translate(-50%, -50%);
   border-radius: 50%;

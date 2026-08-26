@@ -79,18 +79,42 @@ img { max-width: 100%; display: block; }
 .leader { fill: none; stroke: rgba(247, 221, 142, .4); stroke-width: 1.2; stroke-dasharray: 2 5; }
 .chip rect { fill: rgba(30, 8, 13, .72); stroke: rgba(247, 221, 142, .3); stroke-width: 1; }
 
+/* The hero sequence, slowly: Prachi lights up (0.9s), the thread travels to
+   Germany (1.9s - 7.5s), the rakhi blooms as it passes the middle (4.7s),
+   and Kavish lights up when it arrives (7.2s). */
 .thread {
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
-  animation: drawThread 2.8s 1.2s ease-in-out forwards;
   filter: drop-shadow(0 0 6px rgba(232, 182, 76, .55));
+  animation: drawThread 5.6s 1.9s ease-in-out forwards,
+             breathe 5s 7.6s ease-in-out infinite;
+}
+
+/* short bright dash that rides the drawing tip: same timing, so it stays at the head */
+.thread-spark {
+  stroke-dasharray: 14 986;
+  stroke-dashoffset: 1000;
+  opacity: 0;
+  filter: drop-shadow(0 0 9px rgba(255, 240, 200, .95));
+  animation: drawThread 5.6s 1.9s ease-in-out forwards,
+             sparkFade 5.6s 1.9s ease-in-out forwards;
 }
 
 .mid-rakhi {
   opacity: 0;
   transform-box: fill-box;
   transform-origin: center;
-  animation: popIn .8s 3.85s cubic-bezier(.2, 1.4, .4, 1) forwards;
+  animation: popIn 1.2s 4.7s cubic-bezier(.2, 1.4, .4, 1) forwards;
+}
+
+.pin-origin { opacity: 0; animation: pinIn 1.1s .9s ease-out forwards; }
+.pin-dest   { opacity: 0; animation: pinIn 1.1s 6.4s ease-out forwards; }
+
+.arrive-burst {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: burst 1.8s 6.55s ease-out forwards;
 }
 .mid-rakhi-spin {
   animation: slowSpin 14s linear infinite;
@@ -105,7 +129,7 @@ img { max-width: 100%; display: block; }
 .hero-tagline {
   font-size: clamp(1rem, 3vw, 1.3rem);
   letter-spacing: .04em;
-  animation: fadeIn 1.2s 4s ease both;
+  animation: fadeIn 1.4s 7.2s ease both;
 }
 .hero-tagline em { color: var(--gold-light); font-family: 'Playfair Display', serif; }
 
@@ -116,7 +140,7 @@ img { max-width: 100%; display: block; }
   letter-spacing: .25em;
   text-transform: uppercase;
   color: rgba(253, 246, 233, .65);
-  animation: fadeIn 1.2s 4.6s ease both;
+  animation: fadeIn 1.2s 8.1s ease both;
 }
 .scroll-cue .arrow { animation: bob 1.6s ease-in-out infinite; font-size: 1.1rem; }
 
@@ -463,6 +487,13 @@ footer {
 
 /* ─────────── KEYFRAMES ─────────── */
 @keyframes drawThread { to { stroke-dashoffset: 0; } }
+@keyframes sparkFade { 0% { opacity: 0; } 8% { opacity: 1; } 88% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes pinIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes burst { from { opacity: .9; transform: scale(1); } to { opacity: 0; transform: scale(8); } }
+@keyframes breathe {
+  0%, 100% { filter: drop-shadow(0 0 6px rgba(232, 182, 76, .5)); }
+  50%      { filter: drop-shadow(0 0 15px rgba(247, 221, 142, .9)); }
+}
 @keyframes popIn { from { opacity: 0; transform: scale(0); } to { opacity: 1; transform: scale(1); } }
 @keyframes slowSpin { to { transform: rotate(360deg); } }
 @keyframes twinkle { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }

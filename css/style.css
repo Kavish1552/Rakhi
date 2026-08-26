@@ -234,6 +234,45 @@ img { max-width: 100%; display: block; }
   animation: twinkle ease-in-out infinite;
 }
 
+/* the terrace illustration */
+.terrace-art {
+  max-width: 640px;
+  margin: 2.2rem auto .5rem;
+  position: relative;
+  z-index: 1;
+}
+.art-frame {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid rgba(247, 221, 142, .28);
+  box-shadow: 0 22px 55px rgba(0, 0, 0, .55);
+}
+.art-frame img {
+  width: 100%;
+  animation: kenburns 22s ease-in-out infinite alternate;
+}
+.lantern-glow {
+  position: absolute;
+  left: 44%;
+  top: 31%;
+  width: 15%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 196, 104, .55) 0%, rgba(255, 170, 60, 0) 70%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: flicker 4.5s ease-in-out infinite;
+}
+.terrace-art figcaption {
+  margin-top: .9rem;
+  text-align: center;
+  color: #ffd9a0;
+  font-size: 1.05rem;
+}
+
 .moon {
   width: 64px; height: 64px;
   margin: 2rem auto 0;
@@ -436,6 +475,12 @@ footer {
 @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
 @keyframes letterRise { from { opacity: 0; transform: translateY(46px) scale(.96); } to { opacity: 1; transform: none; } }
 @keyframes tieIn { from { transform: translate(-50%, -50%) scale(0) rotate(-180deg); } to { transform: translate(-50%, -50%) scale(1) rotate(0); } }
+@keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.05); } }
+@keyframes flicker {
+  0%, 100% { opacity: .55; transform: translate(-50%, -50%) scale(1); }
+  35%      { opacity: .9;  transform: translate(-50%, -50%) scale(1.09); }
+  62%      { opacity: .45; transform: translate(-50%, -50%) scale(.95); }
+}
 @keyframes petalFall {
   from { transform: translateY(-6vh) rotate(0deg); }
   to   { transform: translateY(110vh) rotate(540deg); }

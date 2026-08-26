@@ -68,22 +68,38 @@ img { max-width: 100%; display: block; }
 .map-wrap { width: min(92vw, 680px); margin: 1.5rem 0 .5rem; animation: fadeIn 1.4s .6s ease both; }
 .map { width: 100%; height: auto; }
 
-.stars circle { animation: twinkle 3s ease-in-out infinite; }
-.stars circle:nth-child(2n) { animation-delay: 1s; }
-.stars circle:nth-child(3n) { animation-delay: 2s; }
+/* map geography */
+.land {
+  fill: url(#landGrad);
+  stroke: rgba(247, 221, 142, .34);
+  stroke-width: .9;
+  stroke-linejoin: round;
+}
+.graticule { fill: none; stroke: rgba(247, 221, 142, .07); stroke-width: .8; }
+.leader { fill: none; stroke: rgba(247, 221, 142, .4); stroke-width: 1.2; stroke-dasharray: 2 5; }
+.chip rect { fill: rgba(30, 8, 13, .72); stroke: rgba(247, 221, 142, .3); stroke-width: 1; }
 
 .thread {
-  stroke-dasharray: 900;
-  stroke-dashoffset: 900;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
   animation: drawThread 2.8s 1.2s ease-in-out forwards;
   filter: drop-shadow(0 0 6px rgba(232, 182, 76, .55));
 }
 
-.mid-rakhi { opacity: 0; animation: popIn .8s 3.6s cubic-bezier(.2, 1.4, .4, 1) forwards; }
-.mid-rakhi-spin { animation: slowSpin 14s linear infinite; transform-origin: 0 0; }
+.mid-rakhi {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: popIn .8s 3.85s cubic-bezier(.2, 1.4, .4, 1) forwards;
+}
+.mid-rakhi-spin {
+  animation: slowSpin 14s linear infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
 
-.pin-name  { fill: var(--cream); font-family: 'Kalam', cursive; font-size: 22px; }
-.pin-place { fill: var(--gold-light); font-family: 'Poppins', sans-serif; font-size: 14px; letter-spacing: .05em; }
+.pin-name  { fill: var(--cream); font-family: 'Kalam', cursive; font-size: 25px; }
+.pin-place { fill: var(--gold-light); font-family: 'Poppins', sans-serif; font-size: 15px; letter-spacing: .12em; }
 .pulse { animation: pulse 2.4s ease-out infinite; transform-origin: center; transform-box: fill-box; }
 
 .hero-tagline {
@@ -404,7 +420,7 @@ footer {
 
 /* ─────────── KEYFRAMES ─────────── */
 @keyframes drawThread { to { stroke-dashoffset: 0; } }
-@keyframes popIn { from { opacity: 0; transform: translate(401px, 169px) scale(0); } to { opacity: 1; transform: translate(401px, 169px) scale(1); } }
+@keyframes popIn { from { opacity: 0; transform: scale(0); } to { opacity: 1; transform: scale(1); } }
 @keyframes slowSpin { to { transform: rotate(360deg); } }
 @keyframes twinkle { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
 @keyframes pulse { 0% { transform: scale(1); opacity: .8; } 100% { transform: scale(3.2); opacity: 0; } }
@@ -423,8 +439,9 @@ footer {
 
 /* ─────────── SMALL SCREENS ─────────── */
 @media (max-width: 520px) {
-  .pin-name { font-size: 30px; }
-  .pin-place { font-size: 19px; }
+  .pin-name { font-size: 34px; }
+  .pin-place { font-size: 21px; }
+  .map-wrap { width: 100vw; }
   .rakhi-picker { gap: .9rem; }
   .rakhi-choice { width: 72px; height: 72px; }
 }

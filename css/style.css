@@ -205,8 +205,12 @@ img { max-width: 100%; display: block; }
   flex-wrap: wrap;
   gap: 1.8rem;
   justify-content: center;
+  align-items: flex-start;   /* keep frames snug to their photo, no stretched white space */
   margin-top: 1.5rem;
 }
+
+/* the journey row holds four polaroids, so it needs more room than a text chapter */
+#journey { max-width: 1120px; }
 
 /* night chapter */
 .chapter-night {
